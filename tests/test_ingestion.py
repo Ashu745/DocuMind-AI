@@ -1,11 +1,14 @@
-from ingest import ingest_pdf
+from modules.ingestion.chunking.text_chunker import TextChunker
 
+def test_chunk_creation():
 
-def test_ingestion():
-
-    chunk_count = ingest_pdf(
-        "tests/testSample/research1.pdf"
+    chunker = TextChunker(
+        chunk_size=100,
+        chunk_overlap=20
     )
 
-    assert chunk_count > 0
-    
+    chunks = chunker.create_chunks(
+        "Hello world " * 100
+    )
+
+    assert len(chunks) > 0
