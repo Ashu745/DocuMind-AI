@@ -7,49 +7,39 @@ import os
 
 def ingest_pdf(pdf_path):
     reader = PDFReader()
+
     chunker = TextChunker(
-            chunk_size=500,
-            chunk_overlap=100
-        )
+        chunk_size=500,
+        chunk_overlap=100
+    )
 
     generator = EmbeddingGenerator()
     store = ChromaStore()
 
+    pdf_file = os.path.basename(pdf_path)
 
+    print("PROCESSING:", pdf_file)
 
-    folder_path = "data/pdfs"
+    text = reader.extract_text(pdf_path)
 
-    for pdf_file in os.listdir(folder_path):
-        print("PROCESSING:", pdf_file)
+    chunks = chunker.create_chunks(text)
 
-        if pdf_file.endswith(".pdf"):
-            pdf_path = os.path.join(
-                folder_path,
-                pdf_file
-            )
-        
-        text = reader.extract_text(
-            pdf_path
+    for index, chunk in enumerate(chunks):
+
+        embedding = generator.generate_embedding(chunk)
+
+        store.add_document(
+            doc_id=f"{pdf_file}_chunk_{index}",
+            text=chunk,
+            embedding=embedding,
+            metadata={
+                "source": pdf_file,
+                "chunk_number": index
+            }
         )
 
-        chunks = chunker.create_chunks(text)
+    print("COUNT:", store.get_count())
+    print("Ingestion Complete")
+    print(f"Total Chunks: {len(chunks)}")
 
-        for index , chunk in enumerate(chunks):
-
-            embedding = generator.generate_embedding(chunk)
-            store.add_document(
-                doc_id=f"{pdf_file}_chunk_{index}",
-                text=chunk,
-                embedding=embedding,
-                metadata={
-                    "source": pdf_file,
-                    "chunk_number": index
-                }
-            )
-            
-        
-
-
-        print("COUNT:", store.get_count())
-        print("Ingestion Complete")
-        print(f"Total Chunks: {len(chunks)}")
+    return len(chunks)
