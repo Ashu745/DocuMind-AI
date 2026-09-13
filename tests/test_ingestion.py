@@ -2,7 +2,7 @@ from modules.ingestion.chunking.text_chunker import TextChunker
 
 def test_chunk_creation():
 
-    chunker = TextChunker(
+    chunker = TextChunker
         chunk_size=100,
         chunk_overlap=20
     )
