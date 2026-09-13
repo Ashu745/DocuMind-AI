@@ -1,8 +1,9 @@
-from modules.ingestion.pdf_reader import PDFReader
-from modules.ingestion.chunking.text_chunker import TextChunker
-from modules.Embeddings.embedding_generator import EmbeddingGenerator
-from modules.vector_store.chroma_store import ChromaStore
 import os
+
+from modules.Embeddings.embedding_generator import EmbeddingGenerator
+from modules.ingestion.chunking.text_chunker import TextChunker
+from modules.ingestion.pdf_reader import PDFReader
+from modules.vector_store.chroma_store import ChromaStore
 
 
 def ingest_pdf(pdf_path):

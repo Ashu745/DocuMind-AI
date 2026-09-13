@@ -1,6 +1,5 @@
-from modules.retrieval.retriever import Retriever
 from modules.generation.generator import Generator
-
+from modules.retrieval.retriever import Retriever
 
 retriever = Retriever()
 generator = Generator()

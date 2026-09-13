@@ -1,7 +1,9 @@
+import os
+
 import streamlit as st
+
 from ingest import ingest_pdf
 from services.rag_service import ask_question
-import os
 
 # -------------------------
 # Session State

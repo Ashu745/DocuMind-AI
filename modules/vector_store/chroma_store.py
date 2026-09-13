@@ -1,5 +1,6 @@
-import chromadb
 from typing import Any
+
+import chromadb
 
 
 class ChromaStore:
