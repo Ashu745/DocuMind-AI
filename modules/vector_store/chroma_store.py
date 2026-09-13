@@ -1,6 +1,5 @@
 import chromadb
 from typing import Any
-import streamlit as st
 class ChromaStore:
 
     def __init__(self , collection_name : str = "rag_documents"):
