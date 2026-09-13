@@ -22,6 +22,6 @@ jobs:
 
       - run: ruff check .
 
-      - name: Run tests
+      - name: Run tests with coverage
         run: |
-          PYTHONPATH=. pytest
+          PYTHONPATH=. pytest --cov=modules --cov-report=term-missing --cov-fail-under=80

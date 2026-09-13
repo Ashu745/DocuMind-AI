@@ -37,3 +37,7 @@ data/pdfs/
 build/
 dist/
 *.egg-info/
+
+
+#coverage
+.coverage
