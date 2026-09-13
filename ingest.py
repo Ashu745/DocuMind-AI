@@ -8,10 +8,7 @@ import os
 def ingest_pdf(pdf_path):
     reader = PDFReader()
 
-    chunker = TextChunker(
-        chunk_size=500,
-        chunk_overlap=100
-    )
+    chunker = TextChunker(chunk_size=500, chunk_overlap=100)
 
     generator = EmbeddingGenerator()
     store = ChromaStore()
@@ -25,17 +22,13 @@ def ingest_pdf(pdf_path):
     chunks = chunker.create_chunks(text)
 
     for index, chunk in enumerate(chunks):
-
         embedding = generator.generate_embedding(chunk)
 
         store.add_document(
             doc_id=f"{pdf_file}_chunk_{index}",
             text=chunk,
             embedding=embedding,
-            metadata={
-                "source": pdf_file,
-                "chunk_number": index
-            }
+            metadata={"source": pdf_file, "chunk_number": index},
         )
 
     print("COUNT:", store.get_count())

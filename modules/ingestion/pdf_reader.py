@@ -2,8 +2,7 @@ import pymupdf
 
 
 class PDFReader:
-    
-    def extract_text(self , pdf_path: str) -> str:
+    def extract_text(self, pdf_path: str) -> str:
         """
         Extract all text from a PDF.
         """
@@ -13,7 +12,6 @@ class PDFReader:
         text = ""
 
         for page in doc:
-            
             text += page.get_text()
 
         doc.close()

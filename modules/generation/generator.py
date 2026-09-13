@@ -1,9 +1,8 @@
 from ollama import chat
 
-class Generator:
 
-    def generate(self , context : str , question : str) -> str:
-        
+class Generator:
+    def generate(self, context: str, question: str) -> str:
         prompt = f"""
 You are a helpful AI assistant.
 
@@ -20,14 +19,7 @@ Question:
 {question}
 """
         response = chat(
-            model = "qwen3:4b",
-            messages = [
-                {
-                    "role" : "user",
-                    "content" : prompt
-                }
-            ]
+            model="qwen3:4b", messages=[{"role": "user", "content": prompt}]
         )
-
 
         return response["message"]["content"]
