@@ -1,4 +1,3 @@
-from ollama import embed
 from ollama import Client
 
 

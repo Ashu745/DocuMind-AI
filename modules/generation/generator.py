@@ -1,4 +1,3 @@
-from ollama import chat
 from ollama import Client
 
 
