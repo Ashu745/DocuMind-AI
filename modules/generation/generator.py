@@ -1,7 +1,12 @@
 from ollama import chat
+from ollama import Client
 
 
 class Generator:
+
+    def __init__(self):
+        self.client = Client(host="http://host.docker.internal:11434")
+
     def generate(self, context: str, question: str) -> str:
         prompt = f"""
 You are a helpful AI assistant.
@@ -18,7 +23,7 @@ Context:
 Question:
 {question}
 """
-        response = chat(
+        response = self.client.chat(
             model="qwen3:4b", messages=[{"role": "user", "content": prompt}]
         )
 

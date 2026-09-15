@@ -25,7 +25,7 @@ st.title("📄 AI Document Assistant")
 with st.sidebar:
     st.header("📚 Documents")
 
-    pdf_folder = "data/pdfs"
+    pdf_folder = "Data/pdfs"
 
     if os.path.exists(pdf_folder):
         pdf_files = [file for file in os.listdir(pdf_folder) if file.endswith(".pdf")]
@@ -51,7 +51,7 @@ if uploaded_files and ingest_button:
     ingested_count = 0
 
     for uploaded_file in uploaded_files:
-        save_path = os.path.join("data/pdfs", uploaded_file.name)
+        save_path = os.path.join("Data/pdfs", uploaded_file.name)
 
         if os.path.exists(save_path):
             st.warning(f"{uploaded_file.name} already exists")
