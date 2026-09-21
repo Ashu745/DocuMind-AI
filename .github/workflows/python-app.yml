@@ -4,7 +4,7 @@ on:
   push:
   pull_request:
   schedule:
-    - cron: '35-38 1 * * 2'
+    - cron: '12-15 20 * * 1'
 
 jobs:
   test:
