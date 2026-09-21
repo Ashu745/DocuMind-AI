@@ -3,6 +3,8 @@ name: Agentic RAG CI
 on:
   push:
   pull_request:
+  schedule:
+    - cron: '31-35 2 * * 2'
 
 jobs:
   test:
